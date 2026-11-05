@@ -1,5 +1,10 @@
 #include <stdio.h>
 #include "lexer.h"
+#include "token.h"
+#include "utils.h"
+
+#define READ 0
+#define WRITE 1
 
 static const char *type_name(tokenType t)
 {
@@ -22,7 +27,7 @@ static void test(char *input)
     for (token_t *t = l->start; t != NULL; t = t->next)
         printf("  %-12s len=%d  [%s]\n", type_name(t->type), t->len, t->val);
     printf("\n");
-    //Free tokens here when write free func
+    free_list(l);
 }
 
 
